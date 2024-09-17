@@ -28,6 +28,7 @@ model User {
 
   createdAt DateTime @default(now())
 
+  // tables are named with upperase in prisma but lowercase in mysql so map is like an alias?
   @@map("users")
 }
 
@@ -35,6 +36,7 @@ model Session {
   id        String   @id
   userId    String
   expiresAt DateTime
+  // on delete cascase so that when a user is deleted the session can also go 
   User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")

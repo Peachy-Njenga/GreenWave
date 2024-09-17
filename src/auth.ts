@@ -6,13 +6,17 @@ import { cookies } from "next/headers";
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
 
+// as described in the lucia documentation
 export const lucia = new Lucia(adapter, {
     sessionCookie: {
         expires: false,
         attributes: {
+            // set it secure for the production, it's ok for it to not be secrue in the development 
             secure: process.env.NODE_ENV === "production"
         }
     },
+
+    // add fields on the user object that we get returned by lucia, since we only get the id by default
     getUserAttributes(databaseUserAttributes) {
         return {
             id: databaseUserAttributes.id,
