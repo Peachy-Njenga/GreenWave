@@ -24,9 +24,10 @@ model User {
   googleId     String?   @unique
   avatarUrl    String?
   bio          String?
-  sessions      Session[]
+  sessions     Session[]
 
   createdAt DateTime @default(now())
+  posts     Post[]
 
   // tables are named with upperase in prisma but lowercase in mysql so map is like an alias?
   @@map("users")
@@ -37,7 +38,18 @@ model Session {
   userId    String
   expiresAt DateTime
   // on delete cascase so that when a user is deleted the session can also go 
-  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
+}
+
+model Post {
+  id      String @id @default(cuid())
+  content String
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@map("posts")
 }

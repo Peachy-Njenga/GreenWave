@@ -16,7 +16,7 @@ export const lucia = new Lucia(adapter, {
         }
     },
 
-    // add fields on the user object that we get returned by lucia, since we only get the id by default
+    // add fields on the user object that we get returned to the frontend by lucia, since we only get the id by default
     getUserAttributes(databaseUserAttributes) {
         return {
             id: databaseUserAttributes.id,
@@ -28,6 +28,7 @@ export const lucia = new Lucia(adapter, {
     },
 })
 
+// we can change the type in the lucia object, connect the DatabaseUserAttributed to lucia itself
 declare module 'lucia' {
     interface Register {
         Lucia: typeof lucia;
@@ -39,11 +40,12 @@ interface DatabaseUserAttributes {
     id: string,
     username: string,
     displayName: string,
+    // or null because its optional in the database
     avatarUrl: string | null,
     googleId: string | null
 }
 
-// called whenever we needto fetch the current user of the session
+// called whenever we needto fetch the current user of the session, for server side components
 export const validateRequest = cache(
     async (): Promise<
         { user: User, session: Session } | { user: null, session: null }
