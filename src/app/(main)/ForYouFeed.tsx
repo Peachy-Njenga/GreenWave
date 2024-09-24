@@ -1,6 +1,7 @@
 "use client";
 
 import InfiniteScrollContainer from "@/components/InfiniteScrollContainer";
+import DeletePostDialogue from "@/components/posts/DeletePostDialogue";
 import Post from "@/components/posts/Post";
 import PostsLoadingSkeleton from "@/components/posts/PostsLoadingSkeleton";
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,7 @@ export default function ForYouFeed() {
         return <PostsLoadingSkeleton />
     }
 
-    if (status === "success" && !posts.length && !hasNextPage){
+    if (status === "success" && !posts.length && !hasNextPage) {
         return <p className="text-center text-muted-foreground">
             No one has posted anything yet.
         </p>
@@ -55,7 +56,7 @@ export default function ForYouFeed() {
             {posts.map((post) => (
                 <Post key={post.id} post={post} />
             ))}
-            {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin"/>}
+            {isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
         </InfiniteScrollContainer>
     );
 }
