@@ -23,7 +23,7 @@ export default function PostEditor() {
                 italic: false
             }),
             Placeholder.configure({
-                placeholder: "What's bugging you ?"
+                placeholder: "Share something..."
             })
         ]
     })

@@ -13,7 +13,7 @@ export default function Page() {
         <div className=" shadow-2xl flex h-full max-h-[40rem] max-w-[64rem] w-full rounded-xl overflow-hidden bg-card ">
             <div className="md:w-1/2 w-full space-y-10 overflow-y-auto p-10">
                 <div className="space-y-1 text-center" >
-                    <h1 className="text-3xl font-bold">Sign up to Bugbook</h1>
+                    <h1 className="text-3xl font-bold">Sign up to GreenWave</h1>
                     <p className="text-muted--foreground">
                         A place where even <span className="italic">you</span> can make a friend
                     </p>
